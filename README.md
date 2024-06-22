@@ -11,10 +11,8 @@ pyTorch:
 	Numpy=1.20.3
 	Scipy=1.6.2
 ### 数据集
-原作者使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 Following the common settings of implicit feedback, if user u_ihas rated item v_j, then the element (u_i,v_j) is set as 1, otherwise 0. We filtered out users and items with too few interactions. The datasets are divided into training set and testing set by 1: (n-1).
+原作者团队使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 按照通常的数据集构建方法，假设用户u评价了物品j，就将元素（u,j）设置为1，否则设置为0。除此之外，原作者在原有数据集上过滤了评价或者被评价次数较少的用户或者物品，并将所有数据按照1：n-1的比例划分为训练集与测试集
 
-You can download all three datasets from [Google Drive](https://drive.google.com/drive/folders/1s6LGibPnal6gMld5t63aK4J7hnVkNeDs?usp=sharing). 
-Feel free to fire an issue if this link doesn't work.
 
 ### How to Run the Code
 Please unzip the datasets first. Also you need to create the History/ and the Models/ directories. The command to train HGCL on the Yelp/Epinions/CiaoDVD dataset is as follows. The commands specify the hyperparameter settings that generate the reported results in the paper.
