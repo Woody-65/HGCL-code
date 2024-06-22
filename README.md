@@ -19,9 +19,6 @@ pyTorch:
 模型的训练主要依赖于distanceMat_addIUUI.pkl，data.pkl以及ICI.pkl这三个数据文件，因此请务必确保运行模型前已经生成上述pkl。
 
 
-
-
-
 * Yelp
 ```
 python main.py --dataset Yelp --ssl_temp 0.5 --ssl_ureg 0.06 --ssl_ireg 0.07 --lr 0.058 --reg 0.05 --ssl_beta 0.45 --rank 3
