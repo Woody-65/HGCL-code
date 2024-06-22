@@ -18,7 +18,7 @@ pyTorch:
 原团队所提供的Yelp数据集在实际运行中出现了一些bug，暂时不推荐使用，而CiaoDVD与Epinions数据集可以正常训练并用于模型评估。在正式开始训练模型之前，需要先进行一系列预处理操作。首先，CiaoDVD与Epinions数据集中的rawdata文件夹均包含rating.mat与trust.mat两个mat文件，需要先将这两个文件从rawdata文件夹中取出，直接存放在与loadMat.py,GenerateDistanceMat.py,GenerateICI.py三个py文件所处的同一目录下。之后，首先运行loadMat.py，该程序会基于上述两个mat文件生成data.pkl文件。随后，依次运行GenerateDistanceMat.py与GenerateICI.py，这两个程序将均以data.pkl文件为基础，分别生成ItemDistance_mat.pkl，UserDistance_mat.pk，distanceMat_addIUUI.pkll和ICI.pkl文件。
 HGCL模型的训练，要求读入distanceMat_addIUUI.pkl，data.pkl以及ICI.pkl这三个数据文件，因此，请务必确保在运行模型前，已经按照上述方法生成了所需的的pkl文件。
 
-除了处理数据集外，还需要在main.py所在目录（即HGCL-main）目录下创建History与Model空文件夹，并且创建好对应的模型名字的子文件夹。比方说，当前希望运行测试CiaoDVD文件夹，就必须在History与Model下均建立一个名字为CiaoDVD的空文件夹，否则运行训练程序将会报错。根据主程序代码设定，模型每次训练一epoch后，将会将当前测试得到的loss，HR（命中率），NDCG（归一化折损累计增益）存入到History文件夹下的模型所读取的数据集的同名文件夹下。Model文件夹仅在取消掉主程序代码main.py的run函数中的saveModel语句的注释后才会发挥效果，功能为存储历史HR得分最高的一轮epoch中的模型参数，可根据需要选择是否运行或注释这个语句。
+除了处理数据集外，还需要在main.py所在目录（即HGCL-main）目录下创建History与Model空文件夹，并且创建好对应的模型名字的子文件夹。比方说，当前希望运行测试CiaoDVD文件夹，就必须在History与Model下均建立一个名字为CiaoDVD的空文件夹，否则运行训练程序将会报错,因为根据主程序代码设定，模型每次训练一epoch后，将会将当前测试得到的loss，HR（命中率），NDCG（归一化折损累计增益）存入相对路径为'./History/模型名字'的文件夹下。此外，关于Model文件夹，仅在取消掉主程序代码main.py的run函数中的self.saveModel()语句的注释后才会发挥效果，其功能为存储历史HR得分最高的一轮epoch中的模型参数，用户可自行根据需要选择是否注释或取消注释。
 
 在完成所有预处理操作后，在HGCL-main目录下运行主文件并提供必要参数，即可开始训练并且评估HGCL模型。以下指令为原作者给出的参考指令。
 * Yelp
