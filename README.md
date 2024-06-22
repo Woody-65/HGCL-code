@@ -11,11 +11,11 @@ pyTorch:
 	Numpy=1.20.3
 	Scipy=1.6.2
 ### 数据集
-原作者团队使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 按照通常的数据集构建方法，假设用户u评价了物品j，就将元素（u,j）设置为1，否则设置为0。除此之外，原作者在原有数据集上过滤了评价或者被评价次数较少的用户或者物品，并将所有数据按照1：n-1的比例划分为训练集与测试集
+原作者团队使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 按照通常的数据集构建方法，假设用户u评价了物品j，就将元素（u,j）设置为1，否则设置为0。除此之外，原作者在原有数据集上过滤了评价或者被评价次数较少的用户或者物品，并将处理后的数据集的所有数据按照1：n-1的比例划分为训练集与测试集
 
 
-### How to Run the Code
-Please unzip the datasets first. Also you need to create the History/ and the Models/ directories. The command to train HGCL on the Yelp/Epinions/CiaoDVD dataset is as follows. The commands specify the hyperparameter settings that generate the reported results in the paper.
+### 如何运行代码
+原团队所提供的Yelp数据集在实际运行中出现了一些bug，暂时不推荐使用，而CiaoDVD与Epinions数据集可以正常训练并用于模型评估。
 * Yelp
 ```
 python main.py --dataset Yelp --ssl_temp 0.5 --ssl_ureg 0.06 --ssl_ireg 0.07 --lr 0.058 --reg 0.05 --ssl_beta 0.45 --rank 3
