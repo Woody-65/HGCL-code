@@ -19,6 +19,8 @@ pyTorch:
 模型的训练要求读入distanceMat_addIUUI.pkl，data.pkl以及ICI.pkl这三个数据文件，因此请务必确保在运行模型前，已经按照上述方法生成了所需的的pkl文件。
 
 除了处理数据集外，还需要在main.py所在目录（即HGCL-main）目录下创建History与Model空文件夹，并且创建好对应的模型名字的子文件夹。比方说，当前希望运行测试CiaoDVD文件夹，就必须在History与Model下均建立一个名字为CiaoDVD的空文件夹，否则运行训练程序将会报错。根据主程序代码设定，模型每次训练一epoch后，将会将当前测试得到的loss，HR（命中率），NDCG（归一化折损累计增益）存入到History文件夹下的模型所读取的数据集的同名文件夹下。Model文件夹仅在取消掉主程序代码main.py的run函数中的saveModel语句的注释后才会发挥效果，功能为存储历史HR得分最高的模型的参数，可根据需要选择是否运行或注释这个语句。
+
+在完成所有预处理操作后，在HGCL-main目录下运行主文件并提供必要参数，即可开始训练并且评估HGCL模型。以下指令为原作者给出的参考指令。
 * Yelp
 ```
 python main.py --dataset Yelp --ssl_temp 0.5 --ssl_ureg 0.06 --ssl_ireg 0.07 --lr 0.058 --reg 0.05 --ssl_beta 0.45 --rank 3
@@ -33,13 +35,13 @@ python3 main.py --dataset CiaoDVD --ssl_temp 0.6 --ssl_ureg 0.04 --ssl_ireg 0.05
 ```
 
 
-### Important arguments
-* `--ssl_temp` It is the temperature factor in the InfoNCE loss in our contrastive learning. The value is selected from {0.1, 0.3, 0.45, 0.5, 0.55,0.6, 0.65}.
-* `--ssl_ureg, ssl_ireg` They are the weights for the contrastive learning loss of user’s and item’s aspect respectively. The value of this pair are tuned from 
+### 重要声明
+* `--ssl_temp` 为InfoNCE损失的温度系数，参考值为 {0.1, 0.3, 0.45, 0.5, 0.55,0.6, 0.65}.
+* `--ssl_ureg, ssl_ireg` 分别为用户视图与物品视图的损失的权重系数，参考值为
 {(3e-2,4e-2),( 4e-2,5e-2),( 5e-2,6e-2), (6e-2,7e-2),( 7e-2,8e-2)}.
-* `--lr` The learning rate of the mode. We tuned it from
+* `--lr`学习率，参考值为
 {1e-2, 3e-2, 4e-2, 4.5e-2, 5e-2, 5.5e-2, 6e-2}.
-* `--Reg` It is the weight for weight-decay regularization. We tune this hyperparameter from the set {1e-2, 3e-2, 4.3e-2, 5e-2, 6e-2, 6.5e-2, 6.8e-2}.
-* `--ssl_beta` This is the balance cofficient of the total contrastive loss , which is tuned from{0.2, 0.27, 0.3, 0.32, 0.4, 0.45, 0.48, 0.5}.
-* `--rank` A hyperparameter of the dimension of low rank matrix decomposition, This parameter is recommended to tune from{1, 2, 3, 4, 5}.
+* `--Reg` 模型参数正则化系数，参考值为 {1e-2, 3e-2, 4.3e-2, 5e-2, 6e-2, 6.5e-2, 6.8e-2}.
+* `--ssl_beta` 对比学习总损失的平衡系数，参考值为{0.2, 0.27, 0.3, 0.32, 0.4, 0.45, 0.48, 0.5}.
+* `--rank` 低秩矩阵分解的维度, 参考值为{1, 2, 3, 4, 5}.
 
