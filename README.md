@@ -15,7 +15,13 @@ pyTorch:
 
 
 ### 如何运行代码
-原团队所提供的Yelp数据集在实际运行中出现了一些bug，暂时不推荐使用，而CiaoDVD与Epinions数据集可以正常训练并用于模型评估。在正式开始训练模型之前，需要先进行一系列预处理操作。首先，CiaoDVD与Epinions数据集中的rawdata文件夹均包含rating.mat与trust.mat两个mat文件，需要先将这两个文件从rawdata文件夹中取出，直接存放在与loadMat.py,GenerateDistanceMat.py,GenerateICI.py三个py文件相同的目录下。这之后
+原团队所提供的Yelp数据集在实际运行中出现了一些bug，暂时不推荐使用，而CiaoDVD与Epinions数据集可以正常训练并用于模型评估。在正式开始训练模型之前，需要先进行一系列预处理操作。首先，CiaoDVD与Epinions数据集中的rawdata文件夹均包含rating.mat与trust.mat两个mat文件，需要先将这两个文件从rawdata文件夹中取出，直接存放在与loadMat.py,GenerateDistanceMat.py,GenerateICI.py三个py文件相同的目录下。这之后，首先运行loadMat.py文件，基于上述两个mat文件生成data.pkl文件。随后，依次运行GenerateDistanceMat.py与GenerateICI.py文件，使其分别以data.pkl文件为基础，生成ItemDistance_mat.pkl，UserDistance_mat.pk，distanceMat_addIUUI.pkll和ICI.pkl文件。
+模型的训练主要依赖于distanceMat_addIUUI.pkl，data.pkl以及ICI.pkl这三个数据文件，因此请务必确保运行模型前已经生成上述pkl。
+
+
+
+
+
 * Yelp
 ```
 python main.py --dataset Yelp --ssl_temp 0.5 --ssl_ureg 0.06 --ssl_ireg 0.07 --lr 0.058 --reg 0.05 --ssl_beta 0.45 --rank 3
