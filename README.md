@@ -11,7 +11,7 @@ pyTorch:
 	Numpy=1.20.3
 	Scipy=1.6.2
 ### 数据集
-原作者团队使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 按照通常的数据集构建方法，假设用户u评价了物品j，就将元素（u,j）设置为1，否则设置为0。除此之外，原作者在原有数据集上过滤了评价或者被评价次数较少的用户或者物品，并将处理后的数据集的所有数据按照1：n-1的比例划分为训练集与测试集
+原作者团队使用了三类数据集 *Yelp*, *Epinions*, and *CiaoDVD*。 按照通常的数据集构建方法，假设用户u评价了物品j，就将元素（u,j）设置为1，否则设置为0。除此之外，原作者在原有数据集上过滤了评价或者被评价次数较少的用户或者物品，并将处理后的数据集的所有数据按照1：n-1的比例划分为训练集与测试集。
 
 
 ### 如何运行代码
@@ -32,6 +32,10 @@ python main.py --dataset Epinions --ssl_temp 0.5 --ssl_ureg 0.04 --ssl_ireg 0.05
 * CiaoDVD
 ```
 python3 main.py --dataset CiaoDVD --ssl_temp 0.6 --ssl_ureg 0.04 --ssl_ireg 0.05 --lr 0.055 --reg 0.065 --ssl_beta 0.3 --rank 3
+```
+* Gowalla(需要用户自己生成)
+```
+python3 main.py --dataset Gowalla --ssl_temp 0.6 --ssl_ureg 0.04 --ssl_ireg 0.05 --lr 0.055 --reg 0.065 --ssl_beta 0.3 --rank 3
 ```
 
 
