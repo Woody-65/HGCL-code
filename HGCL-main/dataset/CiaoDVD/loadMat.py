@@ -157,7 +157,7 @@ if __name__ == '__main__':
     # userid, productid, categoryid, rating, helpfulness
     ratings = scio.loadmat(ratingsMat)['rating']
     # column1 trusts column 2.
-    trust = scio.loadmat(trustMat)['trustnetwork']
+    trust = scio.loadmat(trustMat)['trust']
     userNum = ratings[:, 0].max() + 1
     itemNum = ratings[:, 1].max() + 1
 
