@@ -22,7 +22,7 @@ HGCL模型的训练，要求读入distanceMat_addIUUI.pkl，data.pkl以及ICI.pk
 
 除了处理数据集外，还需要在main.py所在目录（即HGCL-main）目录下创建History与Model空文件夹，并且创建好对应的模型名字的子文件夹。比方说，当前希望运行测试CiaoDVD文件夹，就必须在History与Model下均建立一个名字为CiaoDVD的空文件夹，否则运行训练程序将会报错,因为根据主程序代码设定，模型每次训练一epoch后，将会将当前测试得到的loss，HR（命中率），NDCG（归一化折损累计增益）存入相对路径为'./History/模型名字'的文件夹下。此外，关于Model文件夹，仅在取消掉主程序代码main.py的run函数中的self.saveModel()语句的注释后才会发挥效果，其功能为存储历史HR得分最高的一轮epoch中的模型参数，用户可自行根据需要选择是否注释或取消注释。
 
-在完成所有预处理操作后，在HGCL-main目录下运行主文件并提供必要参数，即可开始训练并且评估HGCL模型。以下指令为原作者给出的参考指令。
+在完成所有预处理操作后，在HGCL-main目录下运行主文件并提供必要参数，即可开始训练并且评估HGCL模型。以下为参考指令。
 * Yelp
 ```
 python main.py --dataset Yelp --ssl_temp 0.5 --ssl_ureg 0.06 --ssl_ireg 0.07 --lr 0.058 --reg 0.05 --ssl_beta 0.45 --rank 3
