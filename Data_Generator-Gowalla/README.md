@@ -1,0 +1,1 @@
+这个文件夹用于生成可以被模型接受的数据文件。请根据txt文件中的Gowalla数据集链接下载数据集，并将下载得到的两个txt文件解压到该目录下，依次运行generatingRating.py,generatingTurst.py，将会得到两个mat文件。
